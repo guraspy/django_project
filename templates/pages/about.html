@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br>
+    <h1 class="text-center"> About project</h1>
+    <br>
+    <div  class="mx-auto ">
+    <div class="col-12 col-md-12 mx-auto border rounded py-2 mb-4 " style="width: 50%; background-color: lightblue;">
+        
+        <p style = "text-indent:20px;">If you read this that means you 
+        have already successfully registered and logged in as <strong>{{ user }}</strong>.<br>
+
+        
+        <p style = "text-indent:20px;"><strong>On the navigation bar you can 
+            redirect to the different pages:</strong></p>
+        <p style = "text-indent:20px;"><strong>Main page</strong> by clicking on the <mark>Twitter</mark> where you can basically see 
+            all the users messages and write your own messages too.</p>
+        <p style = "text-indent:20px;"><strong>My messages page</strong>
+            which will show you all the messages posted by you.</p>
+        <p style = "text-indent:20px;"><strong>About 
+            page</strong> where you can see information about project. (you are located at about page right now.)</p>
+        <p style = "text-indent:20px;"><strong>Logout page</strong> where you can logout.</p>
+
+        <p style = "text-indent:20px;">You can search messages at <strong>Search bar</strong> with character, with words or 
+            as you want to search.</p>
+
+        <p style = "text-indent:20px;">Users are able to delete messages on the 
+            any page if they are the owners of them. They can not delete other 
+            users messages. </p> 
+
+        <hr>
+        <p style = "text-indent:20px;">Users <mark>can not</mark> follow one another.</p>
+
+        <p style = "text-indent:20px;">A search page which allows you to find other users in the app <mark>does not exist</mark>.</p>
+        
+        <p style = "text-indent:20px;">Messages <mark>can not</mark>  contain images attached to them.</p>
+        
+        
+        
+        </div>
+    </div>
+</div>
+
+ 
+{% endblock content %}
+

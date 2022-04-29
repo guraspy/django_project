@@ -1,0 +1,31 @@
+<head>
+<style>
+    .pretty{
+        background-color: lightblue;
+        width: 700px;
+        margin-left: calc(50% - 350px);
+        margin-top: -8px;
+    }
+</style>
+</head>
+
+
+<div class="pretty">
+    <center>
+        <h1>{{ title}}</h1>
+
+        {% if 'Register' in title %}
+            <h3>Already have an account? <a href="/login">Sign in</a></h3>
+        {% endif %}
+
+        {% if description %}
+        <p>{{description}}</p>
+        {% endif %}
+        
+        {% include "accounts/form.html" with form=form btn_label=btn_label %}
+
+        {% if 'Login' in title %}
+            <h3>Don't have account? <a href="/register">Register</a></h3>
+        {% endif %}
+    </center>
+</div>

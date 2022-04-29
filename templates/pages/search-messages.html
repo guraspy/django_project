@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center">
+    {% if searched %}    
+
+        <br>
+        <h1>You Searched For "{{ searched }}"</h1>
+        <br>
+</div>
+        
+        {% for message in messages %}
+            <div class="col-12 col-md-12 mx-auto border rounded py-2 mb-4 " style="width: 50%;">
+
+                <strong style="margin-left: 20px;">
+                    {{ message.user }} 
+                </strong>
+
+                <p style = "text-indent:20px;">{{ message.content }}</p>   
+
+                {% if message.user == user %}
+                <a href="{% url 'delete_post' message.id %}" style="margin-left: 20px;">
+                    (Delete)
+                </a>    
+                {% endif %}
+
+            </div>
+
+            
+
+        {% endfor %} 
+
+    {% else %}
+    <br>
+        <h1>You Forgot To Search For A Message...</h1>
+    {% endif %}
+</div>
+{% endblock content %}
+

@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-light navbar-dark bg-primary">
+
+    <a class="navbar-brand" href="/"  >Twitter</a>
+
+    <a class="navbar-brand"  href="/view-message" >My messages </a>
+
+    <form class="text-center" method="post" style="text-align: right; width: 100%;" action="{% url 'search_post' %}">
+
+        {% csrf_token %}
+        <input placeholder="Search messages" name="searched"> 
+        <button type="submit">Search</button>
+
+    </form> 
+    
+    <a class="navbar-brand"  href="/about">About</a>
+
+    <a class="navbar-brand"  href="/logout">Logout </a>
+      
+</nav>
