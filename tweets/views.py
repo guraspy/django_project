@@ -35,6 +35,7 @@ def message_create_view(request, *args, **kwargns):
         
     return render(request, "messages/forms.html", context)
 
+
 def all_message_view(request, tweet_id, *args, **kwargs):
     print(dir(request))
     message = {
@@ -48,6 +49,7 @@ def all_message_view(request, tweet_id, *args, **kwargs):
 
     return render(request, "pages/tweet-page.html", message)
 
+
 @login_required
 def message_view(request, *args, **kwargs): 
 
@@ -59,6 +61,7 @@ def message_view(request, *args, **kwargs):
     } 
     
     return render(request, "pages/user-messages.html", messages)
+
 
 @login_required
 def delete_message(request, tweet_id, *args, **kwargs):
