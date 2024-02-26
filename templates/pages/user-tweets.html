@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br> 
+    <div class="text-center">
+        <h1>This is your tweets {{ user }} :</h1>
+        
+        <br>
+
+        {% for tweet in tweets %}
+
+            <div class="custom-container" style="width: 50%;">
+
+                <a href="{% url 'user_profile' username=tweet.user %}?name={{ tweet.user }}" style="margin-left: 20px;">{{ tweet.user }}</a>
+
+                <p style = "text-indent:20px;">{{ tweet.content }}</p>   
+                
+                <p style = "text-indent:20px;">
+                    {% if tweet.image %}
+                        <img src="{{ tweet.image.url }}" alt="Tweet Image">
+                    {% endif %}
+                </p>   
+
+                <a href="{% url 'delete_post' tweet.id %}" style="margin-left: 20px;">
+                    (Delete)
+                </a>
+            </div>
+
+        
+        {% endfor %}
+
+    </div>
+ 
+{% endblock content %}
+

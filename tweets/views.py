@@ -13,79 +13,82 @@ def home_view(request, *args, **kwargs):
 
     # reversing data to display new messages first
     data = list(reversed(data))
+    # TODO[DG] data = reversed(data) gasarkvevia listad rato gadavaqcie
 
-    messages = {
-        "messages": data,
-        "user": request.user
+    # TODO egreve listi ro gadavce da ara dict
+    tweets = {
+        "tweets": data,
     }
     
-    return render(request, "pages/home.html", messages)
+    return render(request, "pages/home.html", tweets)
 
 @login_required
-def message_create_view(request, *args, **kwargns):
-    form = TweetForm(request.POST or None)
-    context={"form": form,}
-    if form.is_valid():
-        obj = form.save(commit=False)
-        obj.user = request.user
-        obj.save()
-        form = TweetForm()
-        context = {"form": form,
-                    "response": "message succesfully posted"}
-        
-    return render(request, "messages/forms.html", context)
+def tweet_create_view(request, *args, **kwargns):
+    # if request.method == 'POST':
+        form = TweetForm(request.POST or None, request.FILES or None)
+        context={"form": form,}
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.user = request.user
+            obj.save()
+            form = TweetForm()
+            context = {"form": form,
+                        "response": "tweet succesfully posted"}
+    # else:
+    #     form = TweetForm()      
+    #     context = {}
+        return render(request, "tweets/forms.html", context)
 
-
-def all_message_view(request, tweet_id, *args, **kwargs):
-    print(dir(request))
-    message = {
+# TODO[DG] find_tweet_by_id
+def all_tweet_view(request, tweet_id, *args, **kwargs):
+    tweet = {
         "id": tweet_id,
     } 
     try:
         obj = Tweet.objects.get(id=tweet_id)
-        message["content"] = obj.content
+        tweet["content"] = obj.content
     except:
-        return render(request, "errors/message-error.html", message)
+        return render(request, "errors/tweet-error.html", tweet)
 
-    return render(request, "pages/tweet-page.html", message)
+    return render(request, "pages/tweet-page.html", tweet)
 
 
 @login_required
-def message_view(request, *args, **kwargs): 
+def tweet_view(request, *args, **kwargs): 
 
     data = Tweet.objects.all().filter(user_id=request.user.pk)
     
-    # reversing data to display new messages first
-    messages = {    
-        "messages": reversed(data)
+    # reversing data to display new tweets first
+    tweets = {    
+        "tweets": reversed(data)
     } 
     
-    return render(request, "pages/user-messages.html", messages)
+    return render(request, "pages/user-tweets.html", tweets)
 
 
 @login_required
-def delete_message(request, tweet_id, *args, **kwargs):
+def delete_tweet(request, tweet_id, *args, **kwargs):
 
     post_to_delete=Tweet.objects.get(id=tweet_id)
     post_to_delete.delete()
 
-    return render(request, "pages/delete-message.html")
+    return render(request, "pages/delete-tweet.html")
 
 
-def search_message(request):
+def search_tweet(request):
 
 
     if request.method == "POST":
         searched = request.POST['searched']
-        messages = Tweet.objects.filter(content__contains=searched)
+        tweets = Tweet.objects.filter(content__contains=searched)
 
-        return render(request, "pages/search-messages.html",
+        return render(request, "pages/search-tweets.html",
                                  {'searched':searched,
-                                'messages':messages,
+                                'tweets':tweets,
                                 'user':request.user})
 
     else:
-        return render(request, "pages/search-messages.html", {})
+        return render(request, "pages/search-tweets.html", {})
 
 @login_required
 def about(request):

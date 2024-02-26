@@ -1,26 +1,21 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
 <br> 
     <div class="text-center">
+        <h1>{{ profile_user }}'s Profile</h1>
+        <br> 
 
-        <h1>Welcome to Twitter</h1>
-
-        <div class="text-center">
-            <a href="create-tweet">
-                <input  type="submit" value="Write Tweet">
-            </a>
-        </div>
-        <br>
-
+        {% if tweets.user.userprofile.bio %}   
+            <p>Bio: {{ tweet.user.userprofile.bio }}</p>
+        {% endif %}
 
         {% for tweet in tweets %}
-            
+
             <div class="custom-container" style="width: 50%;">
 
                 <a href="{% url 'user_profile' username=tweet.user %}" style="margin-left: 20px;">{{ tweet.user }}</a>
-
-                {% comment %} <strong style="margin-left: 20px;">{{ tweet.user }}</strong><br>  {% endcomment %}
 
                 <p style = "text-indent:20px;">{{ tweet.content }}</p>   
 
@@ -37,9 +32,10 @@
                 {% endif %}
 
             </div>
+
         {% endfor %}
 
     </div>
 
-{% endblock content %}
+{% endblock %}
 

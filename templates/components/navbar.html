@@ -2,12 +2,12 @@
 
     <a class="navbar-brand" href="/"  >Twitter</a>
 
-    <a class="navbar-brand"  href="/view-message" >My messages </a>
+    <a class="navbar-brand"  href="/view-tweet" >My Tweets </a>
 
     <form class="text-center" method="post" style="text-align: right; width: 100%;" action="{% url 'search_post' %}">
 
         {% csrf_token %}
-        <input placeholder="Search messages" name="searched"> 
+        <input placeholder="Search Tweets" name="searched"> 
         <button type="submit">Search</button>
 
     </form> 
