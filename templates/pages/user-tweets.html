@@ -17,11 +17,11 @@
                 
                 <p style = "text-indent:20px;">
                     {% if tweet.image %}
-                        <img src="{{ tweet.image.url }}" alt="Tweet Image">
+                        <img width="300" height="300" src="{{ tweet.image.url }}" alt="Tweet Image">
                     {% endif %}
                 </p>   
 
-                <a href="{% url 'delete_post' tweet.id %}" style="margin-left: 20px;">
+                <a href="{% url 'delete_post' tweet.id %}" style="margin-left: 20px;" onclick="return confirm('Are you sure you want to permanently remove this post?')">
                     (Delete)
                 </a>
             </div>

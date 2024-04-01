@@ -1,4 +1,5 @@
 # .gitignore
 venv/
+media/
 __pycache__/
 *.pyc

@@ -1,10 +1,23 @@
 <nav class="navbar navbar-expand-lg navbar-light navbar-dark bg-primary">
 
-    <a class="navbar-brand" href="/"  >Twitter</a>
+    <div class="dropdown ms-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Menu
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="/profile/{{ user }}">Profile</a></li>
+          <li><a class="dropdown-item" href="/profile/{{ user }}/edit-profile/">Edit Profile</a></li>
+          <li><a class="dropdown-item" href="/view-tweet">My Tweets</a></li>
+          <li><a class="dropdown-item" href="/about">About</a></li>
+        </ul>
+    </div>
+    
+    <a class="navbar-brand ms-2" href="/"  >Twitter</a>
+    
 
-    <a class="navbar-brand"  href="/view-tweet" >My Tweets </a>
+    {% comment %} <a class="navbar-brand"  href="/view-tweet" >My Tweets </a> {% endcomment %}
 
-    <form class="text-center" method="post" style="text-align: right; width: 100%;" action="{% url 'search_post' %}">
+    <form class="text-center" method="post" style="text-align: right; width: 100%;"  action="{% url 'search_post' %}">
 
         {% csrf_token %}
         <input placeholder="Search Tweets" name="searched"> 
@@ -12,8 +25,9 @@
 
     </form> 
     
-    <a class="navbar-brand"  href="/about">About</a>
+    {% comment %} <a class="navbar-brand"  href="/about">About</a> {% endcomment %}
 
-    <a class="navbar-brand"  href="/logout">Logout </a>
+    <a class="navbar-brand ms-auto"  href="/logout">Logout </a>
       
 </nav>
+

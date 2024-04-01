@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<br> 
+    <div class="text-center">
+        <h1>{{ profile_user }}'s Profile</h1>
+        <br> 
+        <div>
+            {% if profile.name %}
+                <img src="{{profile.profileimg.url}}" class="avatar img-circle img-thumbnail" alt="avatar"> 
+            {% endif %}
+
+            {% if profile.name %} 
+                <p> <b>Name: </b>{{ profile.name }}</p>
+            {% endif %}
+
+            {% if profile.surname %}
+                <p><b>Surname: </b>{{ profile.surname }}</p>
+            {% endif %}
+
+            {% if profile.bio %}
+                <p><b>Bio: </b>{{ profile.bio }}</p>
+            {% endif %}
+
+            {% if likes.total_likes %}
+                <p><b>Total likes: </b>{{ likes.total_likes }}</p>
+            {% endif %}
+        </div>
+        <div class="text-center">
+            <a href="edit-profile">
+                <input  type="submit" value="Edit Profile">
+            </a>
+        </div>
+        <br> 
+            
+        {% for tweet in tweets %}
+            
+            <div class="custom-container" style="width: 50%;">
+
+                <a href="{% url 'user_profile' username=tweet.user %}" style="margin-left: 20px;">{{ tweet.user }}</a>
+
+                <p style = "text-indent:20px;">{{ tweet.content }}</p>   
+
+                <p style = "text-indent:20px;">
+                    {% if tweet.image %}
+                        <img width="300" height="300" src="{{ tweet.image.url }}" alt="Tweet Image">
+                    {% endif %}
+                </p>   
+
+                {% if tweet.user == user %}
+                    <a href="{% url 'delete_post' tweet.id %}" style="margin-left: 20px;" onclick="return confirm('Are you sure you want to permanently remove this post?')">
+                        (Delete)
+                    </a>    
+                {% endif %}
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% endblock %}
+
