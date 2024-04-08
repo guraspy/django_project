@@ -12,18 +12,8 @@
         {% for tweet in tweets %}
             <div class="custom-container" style="width: 50%;">
 
-                <strong style="margin-left: 20px;">
-                    {{ tweet.user }} 
-                </strong>
-
-                <p style = "text-indent:20px;">{{ tweet.content }}</p>   
-
-                {% if tweet.user == user %}
-                <a href="{% url 'delete_post' tweet.id %}" style="margin-left: 20px;" onclick="return confirm('Are you sure you want to permanently remove this post?')">
-                    (Delete)
-                </a>    
-                {% endif %}
-
+                {% include 'includes/tweet.html' with tweet=tweet %}
+                
             </div>
 
             

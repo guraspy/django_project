@@ -11,19 +11,8 @@
 
             <div class="custom-container" style="width: 50%;">
 
-                <a href="{% url 'user_profile' username=tweet.user %}?name={{ tweet.user }}" style="margin-left: 20px;">{{ tweet.user }}</a>
-
-                <p style = "text-indent:20px;">{{ tweet.content }}</p>   
+                {% include 'includes/tweet.html' with tweet=tweet %}
                 
-                <p style = "text-indent:20px;">
-                    {% if tweet.image %}
-                        <img width="300" height="300" src="{{ tweet.image.url }}" alt="Tweet Image">
-                    {% endif %}
-                </p>   
-
-                <a href="{% url 'delete_post' tweet.id %}" style="margin-left: 20px;" onclick="return confirm('Are you sure you want to permanently remove this post?')">
-                    (Delete)
-                </a>
             </div>
 
         
